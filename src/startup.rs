@@ -1,4 +1,4 @@
-use crate::routes::{health_check};
+use crate::routes::{health_check,tasks};
 use actix_web::dev::Server;
 use actix_web::web::Data;
 use actix_web::{web, App, HttpServer};
@@ -10,6 +10,7 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
     let server = HttpServer::new(move || {
         App::new()
             .route("/health_check", web::get().to(health_check))
+            .route("/get_tasks/{id}", web::get().to(tasks::get_task))
             .app_data(db_pool.clone())
     })
     .listen(listener)?
