@@ -1,5 +1,5 @@
 -- Add migration script here
-CREATE TABLE subscriptions(
+CREATE TABLE tasks(
     id uuid NOT NULL,
     PRIMARY KEY (id),
     content TEXT NOT NULL,
